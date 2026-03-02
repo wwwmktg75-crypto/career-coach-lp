@@ -46,6 +46,14 @@
         .font-source-han-serif { font-family: 'Noto Serif JP', 'Source Han Serif JP', serif; }
         /* 浮出しエフェクト（明るいハイライト＋暗い影で立体感） */
         .text-relief { text-shadow: 1px 1px 0 rgba(255,255,255,0.9), -1px -1px 0 rgba(0,0,0,0.08), 0 1px 2px rgba(255,255,255,0.6); }
+        /* 白い格子柄の背景 */
+        .bg-grid-white {
+            background-color: #c7d9e5;
+            background-image:
+                linear-gradient(to right, rgba(255,255,255,0.45) 1px, transparent 1px),
+                linear-gradient(to bottom, rgba(255,255,255,0.45) 1px, transparent 1px);
+            background-size: 28px 28px;
+        }
     </style>
 </head>
 <body class="text-gray-800 leading-relaxed">
@@ -108,7 +116,7 @@
         </p>
     </section>
 
-    <section class="p-6 bg-[#c7d9e5]">
+    <section class="p-6 bg-grid-white">
         <div class="text-center mb-8">
             <img src="image/copy2.png" alt="あなた専属の AIキャリアコーチ が伴走します" class="mx-auto max-w-[320px] sm:max-w-[400px] w-auto h-auto object-contain" />
         </div>
@@ -137,7 +145,7 @@
             <div class="w-full rounded-2xl overflow-hidden bg-white shadow-inner" style="min-height: 700px;">
                 <iframe src="https://udify.app/chatbot/LvC3Z4FZw5T6aWhU" style="width: 100%; height: 100%; min-height: 700px;" frameborder="0" allow="microphone" title="AIキャリアコーチ チャット"></iframe>
             </div>
-            <p class="mt-3 text-xs text-center" style="color: #2a3550;">※試作版（MVP版）のため、機能は限定されています。</p>
+            <p class="font-source-han-serif mt-3 text-xs text-center" style="color: #2a3550;">※試作版（MVP版）のため、機能は限定されています。</p>
             <div class="mt-6 flex justify-center">
                 <a href="#" class="inline-block fv-hover-scale" aria-label="正式版リリースのお知らせを受け取る（無料）">
                     <img src="image/bottun.png" alt="正式版リリースのお知らせを受け取る（無料）" class="max-h-[7rem] sm:max-h-[9rem] w-auto h-auto object-contain mx-auto" />
@@ -150,7 +158,7 @@
         <h2 class="font-source-han-serif text-center font-bold text-lg mb-8 text-relief text-gray-700">正式版でできること</h2>
         <p class="text-center text-sm text-gray-600 mb-6 max-w-md mx-auto">"自分の人生を<br>より心地よく生きるためのサポート"<br>がさらに拡張されます</p>
         <div class="flex flex-col items-center gap-6 max-w-2xl mx-auto">
-            <img src="service1.png" alt="自己理解の深堀り（コーチング機能）" class="fv-hover-scale max-w-full w-auto h-auto object-contain cursor-pointer" />
+            <img src="image/service1.png" alt="自己理解の深堀り（コーチング機能）" class="fv-hover-scale max-w-full w-auto h-auto object-contain cursor-pointer" />
             <img src="image/service2.png" alt="新たな働き方との出会い（キャリアSNS機能）" class="fv-hover-scale max-w-full w-auto h-auto object-contain cursor-pointer" />
             <img src="image/service3.png" alt="働くママ同士のつながり（ワーママコミュニティ機能）" class="fv-hover-scale max-w-full w-auto h-auto object-contain cursor-pointer" />
         </div>
@@ -171,8 +179,8 @@
                 <img src="image/bottun.png" alt="正式版リリースのお知らせを受け取る（無料）" class="max-h-[7rem] sm:max-h-[9rem] w-auto h-auto object-contain mx-auto" />
             </a>
         </div>
-        <p class="text-xs text-gray-500 mb-8 max-w-sm mx-auto">申し込みいただいた方には、<br>先行利用のご案内もお送りします。</p>
-        <p class="text-[10px] text-gray-400">© 2026 AI Career Coach for Working Moms.</p>
+        <p class="font-source-han-serif text-xs mb-8 max-w-sm mx-auto" style="color: #2a3550;">申し込みいただいた方には、<br>先行利用のご案内もお送りします。</p>
+        <p class="font-source-han-serif text-[10px]" style="color: #2a3550;">© 2026 AI Career Coach for Working Moms.</p>
         </div>
     </footer>
 
