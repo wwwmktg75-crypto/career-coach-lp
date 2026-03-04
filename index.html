@@ -59,11 +59,24 @@
                 linear-gradient(to bottom, rgba(255,255,255,0.45) 1px, transparent 1px);
             background-size: 28px 28px;
         }
-        /* チャット iframe: モバイルで高さ控えめ、sm以上で700px */
-        .chat-iframe-wrap { min-height: 420px; }
-        .chat-iframe-h { min-height: 420px; display: block; }
-        @media (min-width: 640px) { .chat-iframe-wrap { min-height: 600px; } .chat-iframe-h { min-height: 600px; } }
-        @media (min-width: 1024px) { .chat-iframe-wrap { min-height: 700px; } .chat-iframe-h { min-height: 700px; } }
+        /* チャット iframe: スマホは画面いっぱい、PCは1画面に収まる高さ */
+        .chat-iframe-wrap { min-height: calc(100vh - 140px); }
+        .chat-iframe-h { min-height: calc(100vh - 140px); display: block; }
+        @media (min-width: 640px) {
+            .chat-iframe-wrap { min-height: min(600px, calc(100vh - 180px)); }
+            .chat-iframe-h { min-height: min(600px, calc(100vh - 180px)); }
+        }
+        @media (min-width: 1024px) {
+            .chat-iframe-wrap { height: min(700px, calc(100vh - 260px)); min-height: 420px; }
+            .chat-iframe-h { height: min(700px, calc(100vh - 260px)); min-height: 420px; display: block; }
+        }
+        /* 正式版でできること: ゴールドライン・フォントサイズ */
+        .section-official { position: relative; }
+        .section-official::before { content: ''; position: absolute; top: 0; left: 50%; transform: translateX(-50%); width: 80%; max-width: 400px; height: 2px; background: linear-gradient(to right, transparent, #b8860b, #daa520, transparent); opacity: 0.9; }
+        .section-official .section-title { font-size: 28px; }
+        .section-official .section-subtitle { font-size: 21px; }
+        .section-official .section-body { font-size: 17px; }
+        .section-official .gold-line { height: 2px; background: linear-gradient(to right, #b8860b, #daa520); margin: 0.5rem auto 1.5rem; width: 120px; }
     </style>
 </head>
 <body class="text-gray-800">
@@ -79,7 +92,7 @@
         <div class="fv-wrap relative z-10 px-4 sm:px-0 pt-0 sm:pt-1 pb-10 sm:pb-14">
             <!-- メインコピー＋PC画像（FV_TOP.png） -->
             <div class="mb-1 sm:mb-2 flex justify-center fv-animate">
-                <img src="image/FV_TOP.png" alt="わたしらしさの輪郭を取り戻し、一歩前へ" class="w-full max-w-[920px] mx-auto h-auto object-contain object-[0%_45%]" />
+                <img src="image/FV_TOP.png" alt="わたしらしさの輪郭を取り戻し、一歩前へ" class="w-full max-w-[850px] mx-auto h-auto object-contain object-[0%_45%]" />
             </div>
 
             <div class="relative flex flex-col md:flex-row md:items-flex-start md:justify-center md:gap-6">
@@ -90,11 +103,11 @@
                         <img src="image/FV_message1.png" alt="育児も、キャリアも どちらも大切にしたい でも、どう進めばいいのか わからない――" class="w-full h-auto" />
                     </div>
                     <!-- 下部: FV_message2 と FV_hands を常に横並び -->
-                    <div class="flex flex-row items-center justify-center gap-2 sm:gap-4 md:gap-6 fv-animate fv-animate-delay-3 w-full max-w-[520px] mt-1 sm:mt-2">
-                        <div class="max-w-[240px] sm:max-w-[340px] md:max-w-[440px] flex-shrink-0 fv-hover-scale">
+                    <div class="flex flex-row items-start justify-center gap-2 sm:gap-4 md:gap-6 fv-animate fv-animate-delay-3 w-full max-w-[520px] mt-1 sm:mt-2">
+                        <div class="max-w-[260px] sm:max-w-[360px] md:max-w-[480px] flex-shrink-0 fv-hover-scale">
                             <img src="image/FV_message2.png" alt="その迷いに寄り添い、あなたのペースで未来を描く 専任AIコーチが伴走します" class="w-full h-auto" />
                         </div>
-                        <div class="rounded-2xl overflow-hidden border border-white/80 shadow-md max-w-[110px] sm:max-w-[160px] md:max-w-[200px] flex-shrink-0 fv-float">
+                        <div class="rounded-2xl overflow-hidden border border-white/80 shadow-md max-w-[110px] sm:max-w-[160px] md:max-w-[200px] flex-shrink-0 fv-float -mt-2 sm:-mt-4 self-start">
                             <img src="image/FV_hands.png" alt="大切な人と手をつなぐ" class="w-full h-auto object-cover object-center" />
                         </div>
                     </div>
@@ -109,33 +122,42 @@
         </div>
     </section>
 
-    <section class="px-4 py-6 sm:px-6 sm:py-8 md:px-8 md:py-10 text-center bg-[#f3eeea]">
-        <img src="image/kazari.png" alt="" class="mx-auto mb-5 sm:mb-6 max-w-[260px] sm:max-w-[300px] w-full h-auto object-contain" aria-hidden="true" />
-        <h2 class="font-source-han-serif text-xl font-bold mb-5 sm:mb-6 text-gray-700">こんな悩み、抱えていませんか？</h2>
-        <div class="flex flex-col justify-center items-center gap-5 sm:gap-6">
-            <img src="image/nayami1.png" alt="やりたいことがあったはずなのに、いつしか見えなくなってしまった" class="fv-hover-scale max-w-[min(560px,94vw)] w-auto h-auto object-contain cursor-pointer" />
-            <img src="image/nayami2.png" alt="産後、キャリアが止まった気がする" class="fv-hover-scale max-w-[min(560px,94vw)] w-auto h-auto object-contain cursor-pointer" />
-            <img src="image/nayami3.png" alt="自信がなくなり、挑戦する気力が湧かない" class="fv-hover-scale max-w-[min(560px,94vw)] w-auto h-auto object-contain cursor-pointer" />
+    <section class="px-4 py-4 sm:px-6 sm:py-6 md:px-8 md:py-6 text-center bg-[#f3eeea] min-h-0">
+        <img src="image/kazari.png" alt="" class="mx-auto mb-3 sm:mb-4 max-w-[200px] sm:max-w-[240px] w-full h-auto object-contain" aria-hidden="true" />
+        <h2 class="font-source-han-serif text-[26px] font-bold mb-3 sm:mb-4 text-gray-700">こんな悩み、抱えていませんか？</h2>
+        <div class="flex flex-col justify-center items-center gap-3 sm:gap-4">
+            <img src="image/nayami1.png" alt="やりたいことがあったはずなのに、いつしか見えなくなってしまった" class="fv-hover-scale max-w-[min(320px,80vw)] w-auto h-auto object-contain cursor-pointer" />
+            <img src="image/nayami2.png" alt="産後、キャリアが止まった気がする" class="fv-hover-scale max-w-[min(320px,80vw)] w-auto h-auto object-contain cursor-pointer" />
+            <img src="image/nayami3.png" alt="自信がなくなり、挑戦する気力が湧かない" class="fv-hover-scale max-w-[min(320px,80vw)] w-auto h-auto object-contain cursor-pointer" />
         </div>
-        <p class="font-source-han-serif mt-6 sm:mt-8 text-lg text-gray-500 max-w-xl mx-auto px-2">
-            子育てと仕事に忙しい毎日の中では、自分自身のことを考える時間は後回しになりがち。誰にも相談できず、自分一人で抱え込んでしまう。そんなママたちの声を元に、このサービスは誕生しました。
+        <p class="font-source-han-serif mt-4 sm:mt-5 text-base text-gray-500 max-w-xl mx-auto px-2 leading-relaxed">
+            子供との時間も大切にしたいけど、<br />
+            　思うようにキャリアを描けないもどかしさ。<br />
+            <br />
+            　あなたの迷いは、あなたのせいじゃない。<br />
+            　環境が変わる中で、<br />
+            　ひとりで答えを出すのはとても難しいから
         </p>
     </section>
 
     <section class="px-4 py-6 sm:px-6 sm:py-8 md:px-8 md:py-10 bg-grid-white">
         <div class="text-center mb-6 sm:mb-8">
-            <img src="image/copy2.png" alt="あなた専属の AIキャリアコーチ が伴走します" class="mx-auto max-w-[85vw] sm:max-w-[320px] md:max-w-[400px] w-auto h-auto object-contain" />
+            <p class="copy2-text font-source-han-serif font-bold text-[26px] leading-relaxed tracking-wide" style="color: #567985;">
+                <span class="block">あなた専属の</span>
+                <span class="inline-block mt-1 px-4 py-1.5 bg-white rounded-sm mx-auto">AIキャリアコーチ</span>
+                <span class="block mt-1">が伴走します</span>
+            </p>
         </div>
 
         <div class="flex flex-col md:flex-row md:flex-wrap md:items-start md:justify-center md:gap-4 max-w-full md:max-w-5xl mx-auto px-1 w-full">
-            <div class="w-full md:w-1/3 md:flex md:flex-col md:items-center md:flex-shrink-0">
-                <img src="image/point1.png" alt="Point 1. あなたの迷いをまず言葉にするところから" class="fv-hover-scale w-full max-w-full h-auto object-contain cursor-pointer" />
+            <div class="w-full md:flex-1 md:min-w-0 md:flex md:flex-col md:items-center">
+                <img src="image/point1.png" alt="Point 1. あなたの迷いをまず言葉にするところから" class="fv-hover-scale w-full max-w-[320px] sm:max-w-[380px] md:max-w-[280px] h-auto object-contain cursor-pointer mx-auto" />
             </div>
-            <div class="w-full md:w-1/3 md:flex md:flex-col md:items-center md:flex-shrink-0">
-                <img src="image/point2.png" alt="Point 2. 仲間と繋がり、視野がひろがる" class="fv-hover-scale w-full max-w-full h-auto object-contain cursor-pointer" />
+            <div class="w-full md:flex-1 md:min-w-0 md:flex md:flex-col md:items-center">
+                <img src="image/point2.png" alt="Point 2. 仲間と繋がり、視野がひろがる" class="fv-hover-scale w-full max-w-[320px] sm:max-w-[380px] md:max-w-[280px] h-auto object-contain cursor-pointer mx-auto" />
             </div>
-            <div class="w-full md:w-1/3 md:flex md:flex-col md:items-center md:flex-shrink-0">
-                <img src="image/point3.png" alt="Point 3. あなたのゴールに合わせて柔軟にサポート" class="fv-hover-scale w-full max-w-full h-auto object-contain cursor-pointer" />
+            <div class="w-full md:flex-1 md:min-w-0 md:flex md:flex-col md:items-center">
+                <img src="image/point3.png" alt="Point 3. あなたのゴールに合わせて柔軟にサポート" class="fv-hover-scale w-full max-w-[320px] sm:max-w-[380px] md:max-w-[280px] h-auto object-contain cursor-pointer mx-auto" />
             </div>
             <!-- 白マーカー風のメッセージ -->
             <div class="w-full md:basis-full mt-6 sm:mt-8 text-center px-2">
@@ -151,7 +173,7 @@
 
     <section class="px-4 py-6 sm:px-6 sm:py-8 md:px-8 md:py-10 bg-[#dcecf6] text-center">
         <img src="image/kazari2.png" alt="" class="mx-auto mb-5 sm:mb-6 max-w-[260px] sm:max-w-[300px] w-full h-auto object-contain" aria-hidden="true" />
-        <h2 class="font-source-han-serif font-bold text-xl mb-5 sm:mb-6 text-relief text-gray-700">AIキャリアコーチとお話ししてみませんか？（無料）</h2>
+        <h2 class="font-source-han-serif font-bold text-[26px] mb-5 sm:mb-6 text-relief text-gray-700">AIキャリアコーチとお話ししてみませんか？（無料）</h2>
         <div class="mb-6 sm:mb-8">
             <img src="image/chat.png" alt="言葉にできないモヤモヤも、忙しい毎日の中の些細な不安も。あなたの専任AIコーチ(試作版)があなたの気持ちを丁寧に受けとめます" class="mx-auto mb-5 sm:mb-6 max-w-[min(360px,92vw)] w-auto h-auto object-contain" />
             <div class="w-full rounded-2xl overflow-hidden chat-iframe-wrap">
@@ -166,15 +188,22 @@
         </div>
     </section>
 
-    <section class="px-4 py-6 sm:px-6 sm:py-8 md:px-8 md:py-10 bg-[#f3eeea]">
-        <h2 class="font-source-han-serif text-center font-bold text-xl mb-5 sm:mb-6 text-relief text-gray-700">正式版でできること</h2>
-        <p class="font-source-han-serif text-center text-lg text-gray-600 mb-5 sm:mb-6 max-w-md mx-auto px-2">"自分の人生を<br>より心地よく生きるためのサポート"<br>がさらに拡張されます</p>
-        <div class="flex flex-col items-center gap-5 sm:gap-6 max-w-full sm:max-w-2xl mx-auto">
-            <img src="image/service1.png" alt="自己理解の深堀り（コーチング機能）" class="fv-hover-scale max-w-full w-auto h-auto object-contain cursor-pointer" />
-            <img src="image/service2.png" alt="新たな働き方との出会い（キャリアSNS機能）" class="fv-hover-scale max-w-full w-auto h-auto object-contain cursor-pointer" />
-            <img src="image/service3.png" alt="働くママ同士のつながり（ワーママコミュニティ機能）" class="fv-hover-scale max-w-full w-auto h-auto object-contain cursor-pointer" />
+    <section class="section-official px-4 py-6 sm:px-6 sm:py-8 md:px-8 md:py-10 bg-[#f3eeea]">
+        <h2 class="section-title font-source-han-serif text-center font-bold text-relief text-gray-700">正式版でできること</h2>
+        <div class="gold-line"></div>
+        <p class="section-subtitle font-source-han-serif text-center text-gray-600 mb-5 sm:mb-6 max-w-md mx-auto px-2">"自分の人生を<br>より心地よく生きるためのサポート"<br>がさらに拡張されます</p>
+        <div class="flex flex-col md:flex-row md:flex-wrap md:items-start md:justify-center gap-5 sm:gap-6 md:gap-6 max-w-full md:max-w-5xl mx-auto">
+            <div class="w-full md:w-1/3 md:flex md:flex-col md:items-center md:flex-shrink-0">
+                <img src="image/service1.png" alt="自己理解の深堀り（コーチング機能）" class="fv-hover-scale w-full max-w-full md:max-w-[260px] h-auto object-contain cursor-pointer" />
+            </div>
+            <div class="w-full md:w-1/3 md:flex md:flex-col md:items-center md:flex-shrink-0">
+                <img src="image/service2.png" alt="新たな働き方との出会い（キャリアSNS機能）" class="fv-hover-scale w-full max-w-full md:max-w-[280px] w-auto h-auto object-contain cursor-pointer" />
+            </div>
+            <div class="w-full md:w-1/3 md:flex md:flex-col md:items-center md:flex-shrink-0">
+                <img src="image/service3.png" alt="働くママ同士のつながり（ワーママコミュニティ機能）" class="fv-hover-scale w-full max-w-full md:max-w-[260px] h-auto object-contain cursor-pointer" />
+            </div>
         </div>
-        <p class="font-source-han-serif text-center text-lg text-gray-600 mt-6 sm:mt-8 max-w-md mx-auto px-2 leading-relaxed">
+        <p class="section-body font-source-han-serif text-center text-gray-600 mt-6 sm:mt-8 max-w-md mx-auto px-2 leading-relaxed">
             あなたのペースで、<br>少しずつ未来の選択肢を<br>見える形にするための機能です。<br><strong>"焦らず、無理なく、確実に"。</strong>
         </p>
     </section>
@@ -184,7 +213,7 @@
             <img src="image/footer_back.png" alt="" class="w-full h-full object-cover object-center" aria-hidden="true" />
         </div>
         <div class="relative z-10">
-        <p class="font-source-han-serif font-bold text-xl mb-4">未来のあなたへ、今すぐ一歩。</p>
+        <p class="font-source-han-serif font-bold text-[26px] mb-4">未来のあなたへ、今すぐ一歩。</p>
         <img src="image/message3.png" alt="家族を大切にしながら、自分の人生もあきらめない。あなたの本音を受け止め、未来へ導く伴走者として私たちはいます。" class="mx-auto mb-6 sm:mb-8 max-w-[min(28rem,92vw)] w-auto h-auto object-contain" />
         <div class="flex justify-center mb-4">
             <a href="https://ssl.form-mailer.jp/fms/779318b5877669" class="inline-block fv-hover-scale" aria-label="正式版リリースのお知らせを受け取る（無料）">
